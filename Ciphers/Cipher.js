@@ -106,3 +106,13 @@ for (let i=0;i< text.length;i++) //goes through the letters
 }
 return result;
 }
+function encryptVigenereCipher() {
+    const inputText = document.getElementById("inputText");
+    const keyInput = document.getElementById("key");
+    const output = document.getElementById("result");
+
+    const text = inputText.value;
+    const key = keyInput.value;
+
+    output.innerText = "Encrypted Text: " + vigenèreCipherLogic(text, key);
+}
