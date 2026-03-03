@@ -70,6 +70,39 @@ function decryptCeasarCipher() {
     shiftInput.value = originalK;
 }
 
-function vigenèreCipherLogic(text, key) {
+function vigenèreCipherLogic(text, key)
+ {
+const cleanKey=key.replace(/[^a-zA-Z]/g,"");//  removes any numbers and stuff
+let result = ""; // Currently Empty 
+let j=0; 
+for (let i=0;i< text.length;i++) //goes through the letters
+    { 
+    const code=text.charCodeAt(i);// gets letters from ASCII thing
+    if (code >=65 && code <=90){ // Uppercase Letters
+        const kChar=cleanKey[j%cleanKey.length];//
+        
+        const k=kChar.toUpperCase().charCodeAt(0)-65; //whatever the shift number may be
+        const p=code-65; // gets letter number from 0-25 which will
+        //be used to calculate the newer letter number
+        let c =(p+k)%26; //applies the shift.
+        if (c<0) c+=26; //just a fail safe for negative numbers...
+        result +=String.fromCharCode(c+65); //adds the letter to the result.
+        j++;
+    }
+    else if (code>=97 && code <=122) //same logic as the uppercase but just with lowercase
+    {
+        const kChar=cleanKey [j%cleanKey.length];
+        const k=kChar.toUpperCase().charCodeAt(0)-65;
 
+        const p=code-97;
+        let c=(p+k)%26;
+        result+=String.fromCharCode(c+97);
+        j++;
+    }
+    else //this is just for things like punctuation and spaces.
+        {
+        result += text[i];
+    }
+}
+return result;
 }
