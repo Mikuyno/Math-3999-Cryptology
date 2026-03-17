@@ -17,6 +17,7 @@ window.addEventListener("load", function () {
             const target = document.getElementById(selectedCipher);
             if (target) target.style.display = "block";
         }
+        document.getElementById("result").innerText = "";
     }
 
     select.addEventListener("change", showSelectedCipher);

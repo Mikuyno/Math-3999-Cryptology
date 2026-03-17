@@ -18,6 +18,8 @@
             <option value="" selected disabled hidden>Select a cipher</option>
             <option value="ceasar">Ceasar Cipher</option>
             <option value="vigenère">Vigenère Cipher</option>
+            <option value="vigenère">Vigenère Cipher</option>
+            <option value="affine">Affine Cipher</option>
             <!-- Add more cipher options here -->
         </select>
     </div>
@@ -28,10 +30,11 @@
             <button onclick="encryptCeasarCipher()">Encrypt</button>
             <button onclick="decryptCeasarCipher()">Decrypt</button>
         </div>
-        <div id="vigenère">
-            <h2>Vigenère Cipher</h2>
-            <input type="text" id="key" placeholder="Enter key">
-            <button onclick="encryptVigenereCipher()">Encrypt</button>
+        <div id="affine">
+            <h2>Affine Cipher</h2>
+            <input type="number" id="kValue" placeholder="Enter 'k' value">
+            <input type="number" id="bValue" placeholder="Enter 'b' value">
+            <button onclick="encryptAffineCipher()">Encrypt</button>
         </div>
         <p id="result"></p>
     </div>
