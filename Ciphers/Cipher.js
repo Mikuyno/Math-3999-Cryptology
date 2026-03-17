@@ -150,5 +150,80 @@ function decryptVigenereCipher() {
 }
 
 function encryptAffineCipher() {
+    const text = document.getElementById("inputText").value;
+    const k = parseInt(document.getElementById("k").value);
+    const b = parseInt(document.getElementById("b").value);
+    const outputDiv = document.getElementById("result");
 
+    if (isNaN(k) || isNaN(b)) {
+        outputDiv.innerText = "Please enter valid numbers for k and b.";
+        return;
+    }
+
+    let result = "";
+
+    for (let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+
+        if (code >= 65 && code <= 90) {
+            const p = code - 65;
+            const c = (k * p + b) % 26;
+            result += String.fromCharCode(c + 65);
+        }
+        else if (code >= 97 && code <= 122) {
+            const p = code - 97;
+            const c = (k * p + b) % 26;
+            result += String.fromCharCode(c + 97);
+        }
+        else {
+            result += text[i];
+        }
+    }
+
+    outputDiv.innerText = "Encrypted Text: " + result;
+}
+function decryptAffineCipher() {
+    const text = document.getElementById("inputText").value;
+    const k = parseInt(document.getElementById("k").value);
+    const b = parseInt(document.getElementById("b").value);
+    const outputDiv = document.getElementById("result");
+
+    const inverse = findInverse(k);
+
+    if (inverse === null) {
+        outputDiv.innerText = "Invalid value for k.";
+        return;
+    }
+
+    let result = "";
+
+    for (let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+
+        if (code >= 65 && code <= 90) {
+            let c = code - 65;
+            let p = (inverse * (c - b)) % 26;
+            if (p < 0) p += 26;
+            result += String.fromCharCode(p + 65);
+        }
+        else if (code >= 97 && code <= 122) {
+            let c = code - 97;
+            let p = (inverse * (c - b)) % 26;
+            if (p < 0) p += 26;
+            result += String.fromCharCode(p + 97);
+        }
+        else {
+            result += text[i];
+        }
+    }
+
+    outputDiv.innerText = "Decrypted Text: " + result;
+}
+ function findInverse(k) {
+    for (let i = 1; i < 26; i++) {
+        if ((k * i) % 26 === 1) {
+            return i;
+        }
+    }
+    return null;
 }
