@@ -240,24 +240,15 @@ if ([a,b,c,d].some(isNaN))
     return;
 }
 
-let result ="";
-for (let i=0;i<text.length;i+=2){
-    let x1=text.charCodeAt(i);
-    let x2 = (i + 1 < text.length) ? text.charCodeAt(i + 1) : 88;
-    
-if (x1>=65 && x1<=90){
-    x1 = x1 - 65;
-    x2 = (x2>=65 && x2<=90) ? x2 - 65 : 23; 
-    let y1 = (a * x1 + b * x2) % 26;
-    let y2 = (c * x1 + d * x2) % 26;
-    result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
-}
-else {
-            result += text[i];
-            i--; 
-        }
-        outputDiv.innerText = "Encrypted Text: " + result;
-    }
+let result="";
+for (let i=0;i<text.length;i+=2)
+    {
+    let x1=text[i].toUpperCase().charCodeAt(0)-65;
+let x2=(i+1<text.length) ? text[i+1].toUpperCase().charCodeAt(0)-65 : 23;
+let y1 = (a*x1 + b*x2) % 26;
+let y2 = (c*x1 + d*x2) % 26;
+result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
+outputDiv.innerText = "Encrypted Text: " + result;
 }
 
 function decryptHillCipher() 
@@ -293,4 +284,5 @@ for (let i=0;i<text.length;i+=2)
     result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
 }
 outputDiv.innerText = "Decrypted Text: " + result;
+}
 }
