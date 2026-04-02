@@ -229,10 +229,10 @@ function decryptAffineCipher() {
 }
 function encryptHillCipher() {
     const text = document.getElementById("inputText").value;
-    const a = parseInt(document.getElementById("a").value);
-    const b = parseInt(document.getElementById("b").value);
-    const c = parseInt(document.getElementById("c").value);
-    const d = parseInt(document.getElementById("d").value);
+    const a = parseInt(document.getElementById("hillA").value);
+    const b = parseInt(document.getElementById("hillB").value);
+    const c = parseInt(document.getElementById("hillC").value);
+    const d = parseInt(document.getElementById("hillD").value);
     const outputDiv = document.getElementById("result");
 
     if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
@@ -263,10 +263,10 @@ function encryptHillCipher() {
 
 function decryptHillCipher() {
     const text = document.getElementById("inputText").value;
-    const a = parseInt(document.getElementById("a").value);
-    const b = parseInt(document.getElementById("b").value);
-    const c = parseInt(document.getElementById("c").value);
-    const d = parseInt(document.getElementById("d").value);
+    const a = parseInt(document.getElementById("hillA").value);
+    const b = parseInt(document.getElementById("hillB").value);
+    const c = parseInt(document.getElementById("hillC").value);
+    const d = parseInt(document.getElementById("hillD").value);
     const outputDiv = document.getElementById("result");
 
     let det = (a*d - b*c) % 26;
