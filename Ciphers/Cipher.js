@@ -228,63 +228,78 @@ function decryptAffineCipher() {
     return null;
 }
 function encryptHillCipher() {
-    const text=document
-.getElementById("inputText").value;
-const a = parseInt(document.getElementById("a").value);
-const b = parseInt(document.getElementById("b").value);
-const c = parseInt(document.getElementById("c").value);
-const d = parseInt(document.getElementById("d").value);
-const outputDiv=document.getElementById("result");
-if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) 
-    {
-    outputDiv.innerText = "Please enter valid numbers for a, b, c, and d.";
-    return;
-}
-
-
-let result="";
-for (let i=0;i<text.length;i+=2)
-    {
-    let x1=text[i].toUpperCase().charCodeAt(0)-65;
-let x2=(i+1<text.length) ? text[i+1].toUpperCase().charCodeAt(0)-65 : 23;
-let y1 = (a*x1 + b*x2) % 26;
-let y2 = (c*x1 + d*x2) % 26;
-result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
-outputDiv.innerText = "Encrypted Text: " + result;
-}
-
-function decryptHillCipher() 
-{
     const text = document.getElementById("inputText").value;
     const a = parseInt(document.getElementById("a").value);
     const b = parseInt(document.getElementById("b").value);
     const c = parseInt(document.getElementById("c").value);
     const d = parseInt(document.getElementById("d").value);
     const outputDiv = document.getElementById("result");
-    let det=(a*d-b*c)%26;
-if (det<0) det+=26;
-const inverseDet=findInverse(det);
-if (inverseDet===null){
-    outputDiv.innerText="Invalid matrix. Determinant has no inverse.";
-    return;
+
+    if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d)) {
+        outputDiv.innerText = "Please enter valid numbers for a, b, c, and d.";
+        return;
+    }
+
+    let result = "";
+
+    for (let i = 0; i < text.length; i += 2) {
+        let x1 = text[i].toUpperCase().charCodeAt(0) - 65;
+        let x2 = (i + 1 < text.length)
+            ? text[i + 1].toUpperCase().charCodeAt(0) - 65
+            : 23;
+
+        let y1 = (a * x1 + b * x2) % 26;
+        let y2 = (c * x1 + d * x2) % 26;
+
+        if (y1 < 0) y1 += 26;
+        if (y2 < 0) y2 += 26;
+
+        result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
+    }
+
+    outputDiv.innerText = "Encrypted Text: " + result;
 }
-let aInv=(d*inverseDet)%26;
-let bInv=(-b*inverseDet)%26;
-let cInv=(-c*inverseDet)%26;
-let dInv=(a*inverseDet)%26;
-if (bInv<0) bInv+=26;
-if (cInv<0) cInv+=26;
-let result="";
-for (let i=0;i<text.length;i+=2)
-    {
-    let x1=text.charCodeAt(i)-65;
-    let x2=(i+1<text.length) ? text.charCodeAt(i+1)-65 : 23;
-    let y1 = (aInv*x1 + bInv*x2) % 26;
-    let y2 = (cInv*x1 + dInv*x2) % 26;
-    if (y1<0)y1+=26;
-    if (y2<0)y2+=26;
-    result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
-}
-outputDiv.innerText = "Decrypted Text: " + result;
-}
+
+
+function decryptHillCipher() {
+    const text = document.getElementById("inputText").value;
+    const a = parseInt(document.getElementById("a").value);
+    const b = parseInt(document.getElementById("b").value);
+    const c = parseInt(document.getElementById("c").value);
+    const d = parseInt(document.getElementById("d").value);
+    const outputDiv = document.getElementById("result");
+
+    let det = (a*d - b*c) % 26;
+    if (det < 0) det += 26;
+
+    const inverseDet = findInverse(det);
+    if (inverseDet === null) {
+        outputDiv.innerText = "Invalid matrix. Determinant has no inverse.";
+        return;
+    }
+
+    let aInv = (d * inverseDet) % 26;
+    let bInv = (-b * inverseDet) % 26;
+    let cInv = (-c * inverseDet) % 26;
+    let dInv = (a * inverseDet) % 26;
+
+    if (bInv < 0) bInv += 26;
+    if (cInv < 0) cInv += 26;
+
+    let result = "";
+
+    for (let i = 0; i < text.length; i += 2) {
+        let x1 = text.charCodeAt(i) - 65;
+        let x2 = (i + 1 < text.length) ? text.charCodeAt(i + 1) - 65 : 23;
+
+        let y1 = (aInv * x1 + bInv * x2) % 26;
+        let y2 = (cInv * x1 + dInv * x2) % 26;
+
+        if (y1 < 0) y1 += 26;
+        if (y2 < 0) y2 += 26;
+
+        result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
+    }
+
+    outputDiv.innerText = "Decrypted Text: " + result;
 }
