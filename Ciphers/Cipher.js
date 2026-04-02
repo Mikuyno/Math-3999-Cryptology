@@ -240,7 +240,7 @@ if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d))
     outputDiv.innerText = "Please enter valid numbers for a, b, c, and d.";
     return;
 }
-}
+
 
 let result="";
 for (let i=0;i<text.length;i+=2)
@@ -286,4 +286,5 @@ for (let i=0;i<text.length;i+=2)
     result += String.fromCharCode(y1 + 65) + String.fromCharCode(y2 + 65);
 }
 outputDiv.innerText = "Decrypted Text: " + result;
+}
 }
