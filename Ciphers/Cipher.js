@@ -302,4 +302,51 @@ function decryptHillCipher() {
     }
 
     outputDiv.innerText = "Decrypted Text: " + result;
+    function encryptBlockCipher() {
+        const text = document.getElementById("inputText").value;
+        const key = document.getElementById("blockKey").value;
+        const outputDiv = document.getElementById("result");
+        
+        let result = "";
+        
+        let cleanText=text;
+        if(cleanText.length%2!==0) cleanText+=""; //padding
+
+        for (let i = 0; i < cleanText.length; i += 2) {
+            let t1 = cleanText.charCodeAt(i) - 65;
+            let t2 = cleanText.charCodeAt(i + 1);
+
+            let k1 = key.charCodeAt(i % key.length);
+            let k2 = key.charCodeAt((i + 1) % key.length);
+
+            let c1 = (t1 + k1) % 256;
+            let c2 = (t2 + k2) % 256;
+
+            result += String.fromCharCode(c1) + String.fromCharCode(c2);
+
+    }
+
+function decryptBlockCipher() {
+    const text = document.getElementById("inputText").value;
+    const key = document.getElementById("blockKey").value;
+    const outputDiv = document.getElementById("result");
+    let result = "";
+
+    for (let i = 0; i < text.length; i += 2) {
+        let c1 = text.charCodeAt(i);
+        let c2 = text.charCodeAt(i + 1);
+
+        let k1 = key.charCodeAt(i % key.length);
+        let k2 = key.charCodeAt((i + 1) % key.length);
+
+        let t1 = (c2 - k1 -c1) % 256;
+        let t2 = (c2 - k2 -t2) % 256;
+        if (t1 < 0) t1 += 256;
+        if (t2 < 0) t2 += 256;
+
+        result += String.fromCharCode(t1) + String.fromCharCode(t2);
+    }
+    outputDiv.innerText = "Decrypted Text: " + result;
+}
+}
 }
