@@ -444,8 +444,94 @@ function decryptHillCipher() {
     outputDiv.innerText = "Decrypted Text: " + result;
 }
 
+function stringtoBytes(str) {
+    const bytes = [];
+    for (let i = 0; i < str.length; i++) {
+        bytes.push(str.charCodeAt(i) & 0xFF);
+    }
+    return bytes;
+}
+
+function blockTextPadding(text, blockSize) {
+    const paddingNeeded = blockSize - (text.length % blockSize);
+    const padded = text.slice();
+    for (let i = 0; i < paddingNeeded; i++) {
+        padded.push(paddingNeeded);
+    }
+    return padded;
+}
+
+function normalizeBlockKey(key, KeySize) {
+    const normalized = key.slice(0, KeySize);
+    while (normalized.length < KeySize) {
+        normalized.push(0);
+    }
+    return normalized;
+}
+
+function splitBlocks(text, blockSize) {
+    const blocks = [];
+    for (let i = 0; i < text.length; i += blockSize) {
+        blocks.push(text.slice(i, i + blockSize));
+    }
+    return blocks;
+}
+
+function xorBlock(block, key) {
+    return block.map((byte, index) => byte ^ key[index]);
+}
+
 function encryptBlockCipher() {
+    const BLOCK_SIZE = 16;
+    //const NUM_ROUNDS = 10;
+    const KEY_SIZE = 16;
+
+    const text = document.getElementById("inputText").value;
+    const key = document.getElementById("blockKey").value;
+
+    let textBytes = stringtoBytes(text);
+    const keyBytes = stringtoBytes(key).slice(0, KEY_SIZE);
+
+    console.log("Text Bytes:", textBytes);
+    console.log("Key Bytes:", keyBytes);
+
+    textBytes = blockTextPadding(textBytes, BLOCK_SIZE);
+
+    const blocks = splitBlocks(textBytes, BLOCK_SIZE);
+    const normalizedKey = normalizeBlockKey(keyBytes, KEY_SIZE);
+
+    const ciphertextBlocks = blocks.map(block => xorBlock(block, normalizedKey));
+    const ciphertextBytes = ciphertextBlocks.flat();
+
+    const hexBytes = ciphertextBytes.map(b => b.toString(16).padStart(2, '0').toUpperCase());
+    const groupedHex = [];
+    for (let i = 0; i < hexBytes.length; i += 4) {
+        groupedHex.push(hexBytes.slice(i, i + 4).join(' '));
+    }
+    const readableHex = groupedHex.join('  ');
+    document.getElementById("result").innerText = "Encrypted Text (Hex): " + readableHex;
+}
+
+function hexToBytes(hex) {
+    const bytes = [];
+    for (let i = 0; i < hex.length; i += 2) {
+        bytes.push(parseInt(hex.substr(i, 2), 16));
+    }
+    return bytes;
 }
 
 function decryptBlockCipher() {
+    const BLOCK_SIZE = 16;
+    const KEY_SIZE = 16;
+    const hexInput = document.getElementById("inputText").value.replace(/\s+/g, '');
+    const key = document.getElementById("blockKey").value;
+    const keyBytes = stringtoBytes(key).slice(0, KEY_SIZE);
+    const ciphertextBytes = hexToBytes(hexInput);
+
+    const blocks = splitBlocks(ciphertextBytes, BLOCK_SIZE);
+    const normalizedKey = normalizeBlockKey(keyBytes, KEY_SIZE);
+    const decryptedBlocks = blocks.map(block => xorBlock(block, normalizedKey));
+    const decryptedBytes = decryptedBlocks.flat();
+    const decryptedText = String.fromCharCode(...decryptedBytes);
+    document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
 }
