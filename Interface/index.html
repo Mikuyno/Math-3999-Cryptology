@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cipher Interface</title>
     <link rel="stylesheet" href="style.css">
-    <script src="../Ciphers/Cipher.js"></script>
+    <script src="../Ciphers/Cipher.js" defer></script>
 </head>
 
 <body>
     <h1>Welcome to the Cipher Interface</h1>
+
     <div class="StartSection">
         <input type="text" id="inputText" placeholder="Enter text to encrypt">
+
         <label for="cipherSelect">Choose a cipher:</label>
         <select id="cipherSelect">
             <option value="" selected disabled hidden>Select a cipher</option>
@@ -20,6 +22,7 @@
             <option value="vigenère">Vigenère Cipher</option>
             <option value="affine">Affine Cipher</option>
             <option value="hill">Hill Cipher</option>
+            <option value="block">Block Cipher</option>
             <!-- Add more cipher options here -->
         </select>
     </div>
@@ -52,22 +55,17 @@
     <br><br>
     <button onclick="encryptHillCipher()">Encrypt</button>
     <button onclick="decryptHillCipher()">Decrypt</button>
-</div>
 
-        <p id="result"></p>
     </div>
- <div id="block">
-    <h2>Block Cipher</h2>
+  <div id="block">
+            <h2>Block Cipher</h2>
+            <input type="text" id="blockKey" placeholder="Enter key">
+            <br><br>
+            <button onclick="encryptBlockCipher()">Encrypt</button>
+            <button onclick="decryptBlockCipher()">Decrypt</button>
+        </div>
 
-    <label for="blockKey">Key:</label>
-    <input type="text" id="blockKey" placeholder="Enter key">
-
-    <br><br>
-
-    <button onclick="encryptBlockCipher()">Encrypt</button>
-    <button onclick="decryptBlockCipher()">Decrypt</button>
-</div>
-       
+    </div>
     <p id="result"></p>
 </body>
 
