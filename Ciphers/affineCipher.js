@@ -3,8 +3,8 @@ function encryptAffineCipher() {
     const k = parseInt(document.getElementById("kValue").value);
     const b = parseInt(document.getElementById("bValue").value);
 
-    if (k < 1 || k > 24 || modInverse(k, 26) === -1) {
-        document.getElementById("result").innerText = "Error: k must be between 1-24 and coprime with 26.";
+    if (k < 1 || k > 25 || modInverse(k, 26) === -1) {
+        document.getElementById("result").innerText = "Error: k must be 1-25 and coprime with 26.";
         return;
     }
 
@@ -45,8 +45,8 @@ function decryptAffineCipher() {
     const k = parseInt(document.getElementById("kValue").value);
     const b = parseInt(document.getElementById("bValue").value);
 
-    if (k < 1 || k > 24) {
-        document.getElementById("result").innerText = "Error: k must be between 1-24.";
+    if (k < 1 || k > 25) {
+        document.getElementById("result").innerText = "Error: k must be 1-25.";
         return;
     }
 

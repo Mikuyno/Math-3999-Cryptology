@@ -130,6 +130,6 @@ function decryptHillCipher() {
             result += String.fromCharCode(finalVal + 65);
         }
     }
-
+    result = result.replace(/X+$/, '');
     outputDiv.innerText = "Decrypted Text: " + result;
 }

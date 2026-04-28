@@ -4,19 +4,19 @@ window.addEventListener("load", function () {
 
     function showSelectedCipher() {
         const selectedCipher = select.value;
-        const container = document.querySelector(".CipherContainer");
-        if (container) {
-            container.style.display = selectedCipher ? "block" : "none";
-        }
 
-        document.querySelectorAll(".CipherContainer > div").forEach(div => {
-            div.style.display = "none";
+        // Hide all cipher sections
+        document.querySelectorAll(".cipher-section").forEach(section => {
+            section.style.display = "none";
         });
 
+        // Show selected cipher section
         if (selectedCipher) {
             const target = document.getElementById(selectedCipher);
             if (target) target.style.display = "block";
         }
+        
+        // Clear previous results
         document.getElementById("result").innerText = "";
     }
 

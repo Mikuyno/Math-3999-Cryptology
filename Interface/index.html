@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cipher Interface</title>
+    <title>Cipher Interface | Linear Algebra & Cryptology</title>
     <link rel="stylesheet" href="style.css">
     <script src="../Ciphers/affineCipher.js"></script>
     <script src="../Ciphers/blockCipher.js"></script>
@@ -15,56 +15,107 @@
 </head>
 
 <body>
-    <h1>Welcome to the Cipher Interface</h1>
-    <div class="StartSection">
-        <input type="text" id="inputText" placeholder="Enter text to encrypt">
-        <label for="cipherSelect">Choose a cipher:</label>
-        <select id="cipherSelect">
-            <option value="" selected disabled hidden>Select a cipher</option>
-            <option value="ceasar">Ceasar Cipher</option>
-            <option value="vigenère">Vigenère Cipher</option>
-            <option value="affine">Affine Cipher</option>
-            <option value="hill">Hill Cipher</option>
-            <option value="block">Block Cipher</option>
-            <!-- Add more cipher options here -->
-        </select>
+    <div class="app-card">
+        <h1>🔐 Cryptology Cipher Suite</h1>
+        <p class="subtitle">SUNY Oneonta – Math 3999</p>
+
+        <div class="start-section">
+            <input type="text" id="inputText" placeholder="Enter text to encrypt / decrypt">
+            <label for="cipherSelect">Choose a cipher:</label>
+            <select id="cipherSelect">
+                <option value="" selected disabled hidden>Select a cipher</option>
+                <option value="ceasar">Caesar Cipher</option>
+                <option value="vigenère">Vigenère Cipher</option>
+                <option value="affine">Affine Cipher</option>
+                <option value="hill">Hill Cipher</option>
+                <option value="block">Block Cipher (Feistel)</option>
+            </select>
+        </div>
+
+        <div class="cipher-container">
+            <!-- Caesar -->
+            <div id="ceasar" class="cipher-section">
+                <div class="cipher-header">
+                    <h2>Caesar Cipher <span class="math-label">c = (x + k) mod 26</span></h2>
+                    <button class="learn-btn" onclick="openModal('ceasar')">📚 Learn</button>
+                </div>
+                <input type="number" id="shiftValue" placeholder="Enter shift value (k)">
+                <div class="button-group">
+                    <button onclick="encryptCeasarCipher()">Encrypt</button>
+                    <button onclick="decryptCeasarCipher()">Decrypt</button>
+                </div>
+            </div>
+
+            <!-- Vigenère -->
+            <div id="vigenère" class="cipher-section">
+                <div class="cipher-header">
+                    <h2>Vigenère Cipher <span class="math-label">cᵢ = (xᵢ + kᵢ) mod 26</span></h2>
+                    <button class="learn-btn" onclick="openModal('vigenère')">📚 Learn</button>
+                </div>
+                <input type="text" id="key" placeholder="Enter keyword">
+                <div class="button-group">
+                    <button onclick="encryptVigenereCipher()">Encrypt</button>
+                    <button onclick="decryptVigenereCipher()">Decrypt</button>
+                </div>
+            </div>
+
+            <!-- Affine -->
+            <div id="affine" class="cipher-section">
+                <div class="cipher-header">
+                    <h2>Affine Cipher <span class="math-label">c = (a·x + b) mod 26</span></h2>
+                    <button class="learn-btn" onclick="openModal('affine')">📚 Learn</button>
+                </div>
+                <input type="number" id="kValue" placeholder="a value (coprime with 26)">
+                <input type="number" id="bValue" placeholder="b value (0–25)">
+                <div class="button-group">
+                    <button onclick="encryptAffineCipher()">Encrypt</button>
+                    <button onclick="decryptAffineCipher()">Decrypt</button>
+                </div>
+            </div>
+
+            <!-- Hill -->
+            <div id="hill" class="cipher-section">
+                <div class="cipher-header">
+                    <h2>Hill Cipher <span class="math-label">C = K·P mod 26</span></h2>
+                    <button class="learn-btn" onclick="openModal('hill')">📚 Learn</button>
+                </div>
+                <input type="text" id="keyMatrix" placeholder="Key matrix (e.g., GY;NQ)">
+                <div class="button-group">
+                    <button onclick="encryptHillCipher()">Encrypt</button>
+                    <button onclick="decryptHillCipher()">Decrypt</button>
+                </div>
+            </div>
+
+            <!-- Block -->
+            <div id="block" class="cipher-section">
+                <div class="cipher-header">
+                    <h2>Block Cipher (Feistel) <span class="math-label">3‑round, S‑box</span></h2>
+                    <button class="learn-btn" onclick="openModal('block')">📚 Learn</button>
+                </div>
+                <input type="text" id="blockKey" placeholder="Enter key (letters only)">
+                <div class="button-group">
+                    <button onclick="encryptBlockCipher()">Encrypt</button>
+                    <button onclick="decryptBlockCipher()">Decrypt</button>
+                </div>
+            </div>
+
+            <!-- unified result box (draft style) -->
+            <div class="result-box" id="result">
+                <!-- output will appear here -->
+            </div>
+        </div>
     </div>
-    <div class="CipherContainer">
-        <div id="ceasar">
-            <h2>Ceasar Cipher</h2>
-            <input type="number" id="shiftValue" placeholder="Enter shift value">
-            <button onclick="encryptCeasarCipher()">Encrypt</button>
-            <button onclick="decryptCeasarCipher()">Decrypt</button>
+
+    <!-- Learning Modal -->
+    <div id="learningModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalBody"></div>
         </div>
-        <div id="vigenère">
-            <h2>Vigenère Cipher</h2>
-            <input type="text" id="key" placeholder="Enter key">
-            <button onclick="encryptVigenereCipher()">Encrypt</button>
-            <button onclick="decryptVigenereCipher()">Decrypt</button>
-        </div>
-        <div id="affine">
-            <h2>Affine Cipher</h2>
-            <input type="number" id="kValue" placeholder="Enter 'k' value">
-            <input type="number" id="bValue" placeholder="Enter 'b' value">
-            <button onclick="encryptAffineCipher()">Encrypt</button>
-            <button onclick="decryptAffineCipher()">Decrypt</button>
-        </div>
-        <div id="hill">
-            <h2>Hill Cipher</h2>
-            <input type="text" id="keyMatrix"
-                placeholder="Enter key matrix with semicolons separating matrix rows (e.g., GCD;DCA)">
-            <button onclick="encryptHillCipher()">Encrypt</button>
-            <button onclick="decryptHillCipher()">Decrypt</button>
-        </div>
-        <div id="block">
-            <h2>Block Cipher</h2>
-            <input type="text" id="blockKey" placeholder="Enter block cipher key">
-            <button onclick="encryptBlockCipher()">Encrypt</button>
-            <button onclick="decryptBlockCipher()">Decrypt</button>
-        </div>
-        <!-- Add more cipher sections here -->
-        <p id="result"></p>
     </div>
+
+    <script src="modal.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,4 @@
-
-function vigenèreCipherLogic(text, key, encrypt = true) {
+function vigenereCipherLogic(text, key, encrypt = true) {
     key = key.toUpperCase().replace(/[^A-Z]/g, "");
     if (key.length === 0) return text;
 
@@ -18,7 +17,6 @@ function vigenèreCipherLogic(text, key, encrypt = true) {
             } else {
                 char = String.fromCharCode(((code - base - keyShift + 26) % 26) + base);
             }
-
             keyIndex++;
         }
         result += char;
@@ -26,17 +24,16 @@ function vigenèreCipherLogic(text, key, encrypt = true) {
     return result;
 }
 
-
 function encryptVigenereCipher() {
     const inputText = document.getElementById("inputText").value;
     const key = document.getElementById("key").value;
-    const encryptedText = vigenèreCipherLogic(inputText, key, true);
+    const encryptedText = vigenereCipherLogic(inputText, key, true);
     document.getElementById("result").innerText = `Encrypted Text: ${encryptedText}\nOriginal Text: ${inputText}\nKey: ${key}`;
 }
 
 function decryptVigenereCipher() {
     const inputText = document.getElementById("inputText").value;
     const key = document.getElementById("key").value;
-    const decryptedText = vigenèreCipherLogic(inputText, key, false);
+    const decryptedText = vigenereCipherLogic(inputText, key, false);
     document.getElementById("result").innerText = `Decrypted Text: ${decryptedText}\nEncrypted Text: ${inputText}\nKey: ${key}`;
 }
