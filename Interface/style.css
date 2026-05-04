@@ -12,27 +12,32 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     margin: 0;
     padding: 2rem 1rem;
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
-.app-card {
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* === INFO CARD (LEFT) === */
+.info-card {
     background: white;
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 28px rgba(196, 30, 58, 0.12);
-    width: 100%;
-    max-width: 550px;
-    transition: all 0.2s ease;
     border-top: 4px solid var(--primary);
+    border-left: 4px solid var(--primary);
 }
 
-h1 {
+.info-card h1 {
     margin: 0 0 0.25rem 0;
     font-size: 1.8rem;
     color: var(--primary);
@@ -40,13 +45,122 @@ h1 {
     font-weight: 700;
 }
 
-.subtitle {
+.info-card .subtitle {
     color: var(--text-muted);
     font-size: 0.85rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 0.5rem;
     border-left: 4px solid var(--primary);
     padding-left: 0.75rem;
     font-weight: 500;
+}
+
+.info-card .semester {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.intro-title {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.8rem 0;
+    font-weight: 700;
+}
+
+.intro-text {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 1.2rem 0;
+}
+
+.course-title,
+.learning-outcomes-title,
+.team-title {
+    color: var(--primary);
+    font-size: 1rem;
+    margin: 1.2rem 0 0.6rem 0;
+    font-weight: 700;
+}
+
+.course-description {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+}
+
+.learning-intro {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    margin: 0 0 0.6rem 0;
+    font-weight: 500;
+}
+
+.learning-list {
+    margin: 0.5rem 0 1.2rem 1.5rem;
+    padding: 0;
+    list-style-type: decimal;
+}
+
+.learning-list li {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    margin: 0.4rem 0;
+    line-height: 1.5;
+}
+
+.team-container {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(196, 30, 58, 0.02) 100%);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(196, 30, 58, 0.1);
+    margin: 0.8rem 0;
+}
+
+.team-member {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.team-member:last-child {
+    margin-bottom: 0;
+}
+
+.member-role {
+    font-weight: 700;
+    color: var(--primary);
+    min-width: 100px;
+}
+
+.member-name,
+.member-names {
+    color: var(--text-dark);
+}
+
+/* === CIPHER CARD (RIGHT) === */
+.cipher-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(196, 30, 58, 0.12);
+    border-top: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+}
+
+.cipher-card-title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-align: center;
 }
 
 /* start section (text + dropdown) */
@@ -93,8 +207,8 @@ h1 {
     animation: fadeIn 0.2s;
 }
 
-.cipher-section h2 {
-    font-size: 1.3rem;
+.cipher-section h3 {
+    font-size: 1.1rem;
     margin: 0 0 0.8rem 0;
     color: var(--primary);
     display: flex;
@@ -113,6 +227,14 @@ h1 {
     color: var(--primary);
     font-family: monospace;
     border: 1px solid rgba(196, 30, 58, 0.15);
+}
+
+.cipher-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .cipher-section input {
@@ -201,23 +323,31 @@ button:focus {
     }
 }
 
-/* responsive */
-@media (max-width: 500px) {
-    .app-card {
-        padding: 1.5rem;
-    }
-    
-    h1 {
-        font-size: 1.5rem;
-    }
-    
-    .button-group {
-        flex-direction: column;
-    }
-    
-    button {
-        width: 100%;
-    }
+/* Learn Button */
+.learn-btn {
+    background: none;
+    border: 2px solid var(--primary);
+    font-size: 0.75rem;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: none;
+}
+
+.learn-btn:hover {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.25);
+    transform: translateY(-1px);
+}
+
+.learn-btn:active {
+    transform: translateY(0);
 }
 
 /* === Modal Styles === */
@@ -229,96 +359,138 @@ button:focus {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 16px;
-    max-width: 500px;
+    max-width: 600px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     position: relative;
-    animation: modalFadeIn 0.2s;
-    border-top: 4px solid var(--primary);
+    animation: modalFadeIn 0.3s ease;
+    border-top: 6px solid var(--primary);
 }
 
 @keyframes modalFadeIn {
     from { 
         opacity: 0; 
-        transform: translateY(-20px); 
+        transform: translateY(-30px) scale(0.95); 
     }
     to { 
         opacity: 1; 
-        transform: translateY(0); 
+        transform: translateY(0) scale(1); 
     }
 }
 
 .close-modal {
     position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 28px;
+    top: 18px;
+    right: 22px;
+    font-size: 32px;
     font-weight: bold;
     color: #aaa;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.2s;
+    line-height: 1;
 }
 
 .close-modal:hover {
     color: var(--primary);
+    transform: scale(1.2);
 }
 
 #modalTitle {
-    margin-top: 0;
+    margin: 0 0 1.5rem 0;
     color: var(--primary);
-    border-bottom: 2px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
     padding-bottom: 12px;
     font-weight: 700;
+    font-size: 1.5rem;
 }
 
 #modalBody {
-    line-height: 1.6;
+    line-height: 1.7;
     font-size: 0.95rem;
     color: var(--text-dark);
 }
 
 #modalBody p {
-    margin: 0.8rem 0;
+    margin: 1rem 0;
+}
+
+#modalBody h3 {
+    color: var(--primary);
+    margin: 1.5rem 0 0.5rem 0;
+    font-weight: 700;
 }
 
 #modalBody .formula {
     background: rgba(196, 30, 58, 0.08);
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
     font-family: monospace;
     font-size: 0.95rem;
-    display: inline-block;
+    display: block;
     color: var(--primary);
-    border: 1px solid rgba(196, 30, 58, 0.15);
+    border: 2px solid rgba(196, 30, 58, 0.2);
+    margin: 0.8rem 0;
+    overflow-x: auto;
 }
 
-.learn-btn {
-    background: none;
-    border: 2px solid var(--primary);
-    font-size: 0.75rem;
-    color: var(--primary);
-    cursor: pointer;
-    padding: 4px 12px;
-    margin-left: 8px;
-    border-radius: 20px;
-    transition: all 0.15s;
-    flex-shrink: 0;
-    font-weight: 600;
+#modalBody ul, #modalBody ol {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
 }
 
-.learn-btn:hover {
-    background: rgba(196, 30, 58, 0.08);
-    transform: none;
-    box-shadow: none;
+#modalBody li {
+    margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .info-card,
+    .cipher-card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    .info-card,
+    .cipher-card {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .cipher-card-title {
+        font-size: 1.3rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+    
+    .cipher-section h3 {
+        font-size: 1rem;
+    }
 }
