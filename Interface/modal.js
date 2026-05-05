@@ -192,7 +192,7 @@ const cipherInfo = {
 
             <h3>📚 Key Properties</h3>
             <ul>
-                <li><strong>Block Size:</strong> Depends on matrix dimension (2x2, 3x3, etc.)</li>
+                <li><strong>Block Size:</strong> Depends on matrix dimension (2x2, 3x3, etc)</li>
                 <li><strong>Type:</strong> Block cipher using linear algebra</li>
                 <li><strong>Key Space:</strong> Large (depends on matrix size and invertibility constraints)</li>
                 <li><strong>Encryption:</strong> All plaintext letters encrypted together in block</li>
@@ -351,7 +351,7 @@ function closeModal() {
 }
 
 // Close modal when clicking outside the modal content
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     const modal = document.getElementById('learningModal');
     if (event.target === modal) {
         closeModal();
@@ -359,7 +359,7 @@ window.addEventListener('click', function(event) {
 });
 
 // Close modal on escape key
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closeModal();
     }
