@@ -192,7 +192,7 @@ const cipherInfo = {
 
             <h3>📚 Key Properties</h3>
             <ul>
-                <li><strong>Block Size:</strong> Depends on matrix dimension (2x2, 3x3, etc)</li>
+                <li><strong>Block Size:</strong> Depends on matrix dimension (2x2, 3x3, etc.)</li>
                 <li><strong>Type:</strong> Block cipher using linear algebra</li>
                 <li><strong>Key Space:</strong> Large (depends on matrix size and invertibility constraints)</li>
                 <li><strong>Encryption:</strong> All plaintext letters encrypted together in block</li>
