@@ -12,97 +12,145 @@
     <script src="../Ciphers/hillCipher.js"></script>
     <script src="../Ciphers/vigenereCipher.js"></script>
     <script src="choiceMenu.js"></script>
-    <script src="modal.js"></script>
 </head>
 
 <body>
-    <div class="app-card">
-        <h1>🔐 Cryptology Cipher Suite</h1>
-        <p class="subtitle">SUNY Oneonta – Math 3999</p>
+    <div class="main-container">
+        <!-- LEFT CARD: Project Information -->
+        <div class="info-card">
+            <h1>🔐 Cryptology Cipher Suite</h1>
+            <p class="subtitle">SUNY Oneonta – Math 3999 Independent Study</p>
+            <p class="semester">Spring 2026</p>
 
-        <div class="start-section">
-            <input type="text" id="inputText" placeholder="Enter text to encrypt / decrypt">
-            <label for="cipherSelect">Choose a cipher:</label>
-            <select id="cipherSelect">
-                <option value="" selected disabled hidden>Select a cipher</option>
-                <option value="ceasar">Caesar Cipher</option>
-                <option value="vigenère">Vigenère Cipher</option>
-                <option value="affine">Affine Cipher</option>
-                <option value="hill">Hill Cipher</option>
-                <option value="block">Block Cipher (Feistel)</option>
-            </select>
+            <h2 class="intro-title">📚 Project Overview</h2>
+            <p class="intro-text">
+                This independent study project focuses on cryptography and the mathematical foundations of cipher systems. 
+                Developed as part of Math 3999 at SUNY Oneonta under the mentorship of Professor Toke Knudsen, this cipher 
+                suite serves as an interactive educational tool for understanding classical and modern encryption techniques.
+            </p>
+            
+            <h3 class="course-title">Course/Project Description</h3>
+            <p class="course-description">
+                This independent study will focus on cryptography. The student(s) will learn about field and work on coding 
+                examples. Special attention will be given to examples of linear algebra in cryptography.
+            </p>
+
+            <h3 class="learning-outcomes-title">Learning Outcomes and Course Objectives</h3>
+            <p class="learning-intro">The goals of the independent study are as follows:</p>
+            <ul class="learning-list">
+                <li>Gaining knowledge of cryptography</li>
+                <li>Gaining knowledge of coding examples in cryptography</li>
+                <li>Gaining knowledge of the role linear algebra plays in cryptography</li>
+                <li>Gaining experience with public speaking</li>
+            </ul>
+
+            <h3 class="team-title">Project Team</h3>
+            <div class="team-container">
+                <div class="team-member">
+                    <span class="member-role">Collaborators:</span>
+                    <span class="member-names">
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Bryce Davis', 'https://linkedin.com/in/bryce-davis', 'bryce46davis@gmail.com'); return false;">Bryce Davis</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Klement Hysaj', 'https://www.linkedin.com/in/klemend-hysaj-65a90a340', '12345678darmul@gmail.com'); return false;">Klement Hysaj</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Leonardo Martinez', 'https://www.linkedin.com/in/leonardo-martinez-513352394', 'leonardocilion@gmail.com'); return false;">Leonardo Martinez</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Darin Mullen', 'https://www.linkedin.com/in/darin-mullen-75878829a', '12345678darmul@gmail.com'); return false;">Darin Mullen</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('David Scott', 'https://www.linkedin.com/in/david-scott-426633305', 'Davidscott5405@gmail.com'); return false;">David Scott</a>
+                    </span>
+                </div>
+                <div class="team-member">
+                    <span class="member-role">Professor:</span>
+                    <span class="member-name">Toke Knudsen</span>
+                </div>
+            </div>
         </div>
 
-        <div class="cipher-container">
-            <!-- Caesar -->
-            <div id="ceasar" class="cipher-section">
-                <div class="cipher-header">
-                    <h2>Caesar Cipher <span class="math-label">c = (x + k) mod 26</span></h2>
-                    <button class="learn-btn" onclick="openModal('ceasar')">📚 Learn</button>
-                </div>
-                <input type="number" id="shiftValue" placeholder="Enter shift value (k)">
-                <div class="button-group">
-                    <button onclick="encryptCeasarCipher()">Encrypt</button>
-                    <button onclick="decryptCeasarCipher()">Decrypt</button>
-                </div>
+        <!-- RIGHT CARD: Cipher Suite -->
+        <div class="cipher-card">
+            <h2 class="cipher-card-title">🔐 Cipher Suite</h2>
+
+            <div class="start-section">
+                <input type="text" id="inputText" placeholder="Enter text to encrypt / decrypt">
+                <label for="cipherSelect">Choose a cipher:</label>
+                <select id="cipherSelect">
+                    <option value="" selected disabled hidden>Select a cipher</option>
+                    <option value="ceasar">Caesar Cipher</option>
+                    <option value="vigenère">Vigenère Cipher</option>
+                    <option value="affine">Affine Cipher</option>
+                    <option value="hill">Hill Cipher</option>
+                    <option value="block">Block Cipher (Feistel)</option>
+                </select>
             </div>
 
-            <!-- Vigenère -->
-            <div id="vigenère" class="cipher-section">
-                <div class="cipher-header">
-                    <h2>Vigenère Cipher <span class="math-label">cᵢ = (xᵢ + kᵢ) mod 26</span></h2>
-                    <button class="learn-btn" onclick="openModal('vigenère')">📚 Learn</button>
+            <div class="cipher-container">
+                <!-- Caesar -->
+                <div id="ceasar" class="cipher-section">
+                    <div class="cipher-header">
+                        <h3>Caesar Cipher <span class="math-label">c = (x + k) mod 26</span></h3>
+                        <button class="learn-btn" onclick="openModal('ceasar')">📚 Learn</button>
+                    </div>
+                    <input type="number" id="shiftValue" placeholder="Enter shift value (k)">
+                    <div class="button-group">
+                        <button onclick="encryptCeasarCipher()">Encrypt</button>
+                        <button onclick="decryptCeasarCipher()">Decrypt</button>
+                    </div>
                 </div>
-                <input type="text" id="key" placeholder="Enter keyword">
-                <div class="button-group">
-                    <button onclick="encryptVigenereCipher()">Encrypt</button>
-                    <button onclick="decryptVigenereCipher()">Decrypt</button>
-                </div>
-            </div>
 
-            <!-- Affine -->
-            <div id="affine" class="cipher-section">
-                <div class="cipher-header">
-                    <h2>Affine Cipher <span class="math-label">c = (a·x + b) mod 26</span></h2>
-                    <button class="learn-btn" onclick="openModal('affine')">📚 Learn</button>
+                <!-- Vigenère -->
+                <div id="vigenère" class="cipher-section">
+                    <div class="cipher-header">
+                        <h3>Vigenère Cipher <span class="math-label">cᵢ = (xᵢ + kᵢ) mod 26</span></h3>
+                        <button class="learn-btn" onclick="openModal('vigenère')">📚 Learn</button>
+                    </div>
+                    <input type="text" id="key" placeholder="Enter keyword">
+                    <div class="button-group">
+                        <button onclick="encryptVigenereCipher()">Encrypt</button>
+                        <button onclick="decryptVigenereCipher()">Decrypt</button>
+                    </div>
                 </div>
-                <input type="number" id="kValue" placeholder="a value (coprime with 26)">
-                <input type="number" id="bValue" placeholder="b value (0–25)">
-                <div class="button-group">
-                    <button onclick="encryptAffineCipher()">Encrypt</button>
-                    <button onclick="decryptAffineCipher()">Decrypt</button>
-                </div>
-            </div>
 
-            <!-- Hill -->
-            <div id="hill" class="cipher-section">
-                <div class="cipher-header">
-                    <h2>Hill Cipher <span class="math-label">C = K·P mod 26</span></h2>
-                    <button class="learn-btn" onclick="openModal('hill')">📚 Learn</button>
+                <!-- Affine -->
+                <div id="affine" class="cipher-section">
+                    <div class="cipher-header">
+                        <h3>Affine Cipher <span class="math-label">c = (a·x + b) mod 26</span></h3>
+                        <button class="learn-btn" onclick="openModal('affine')">📚 Learn</button>
+                    </div>
+                    <input type="number" id="kValue" placeholder="a value (coprime with 26)">
+                    <input type="number" id="bValue" placeholder="b value (0–25)">
+                    <div class="button-group">
+                        <button onclick="encryptAffineCipher()">Encrypt</button>
+                        <button onclick="decryptAffineCipher()">Decrypt</button>
+                    </div>
                 </div>
-                <input type="text" id="keyMatrix" placeholder="Key matrix (e.g., GY;NQ)">
-                <div class="button-group">
-                    <button onclick="encryptHillCipher()">Encrypt</button>
-                    <button onclick="decryptHillCipher()">Decrypt</button>
-                </div>
-            </div>
 
-            <!-- Block -->
-            <div id="block" class="cipher-section">
-                <div class="cipher-header">
-                    <h2>Block Cipher (Feistel) <span class="math-label">3‑round, S‑box</span></h2>
-                    <button class="learn-btn" onclick="openModal('block')">📚 Learn</button>
+                <!-- Hill -->
+                <div id="hill" class="cipher-section">
+                    <div class="cipher-header">
+                        <h3>Hill Cipher <span class="math-label">C = K·P mod 26</span></h3>
+                        <button class="learn-btn" onclick="openModal('hill')">📚 Learn</button>
+                    </div>
+                    <input type="text" id="keyMatrix" placeholder="Key matrix (e.g., GY;NQ)">
+                    <div class="button-group">
+                        <button onclick="encryptHillCipher()">Encrypt</button>
+                        <button onclick="decryptHillCipher()">Decrypt</button>
+                    </div>
                 </div>
-                <input type="text" id="blockKey" placeholder="Enter key (letters only)">
-                <div class="button-group">
-                    <button onclick="encryptBlockCipher()">Encrypt</button>
-                    <button onclick="decryptBlockCipher()">Decrypt</button>
-                </div>
-            </div>
 
-            <!-- unified result box (draft style) -->
-            <div class="result-box" id="result">
-                <!-- output will appear here -->
+                <!-- Block -->
+                <div id="block" class="cipher-section">
+                    <div class="cipher-header">
+                        <h3>Block Cipher (Feistel) <span class="math-label">3‑round, S‑box</span></h3>
+                        <button class="learn-btn" onclick="openModal('block')">📚 Learn</button>
+                    </div>
+                    <input type="text" id="blockKey" placeholder="Enter key (letters only)">
+                    <div class="button-group">
+                        <button onclick="encryptBlockCipher()">Encrypt</button>
+                        <button onclick="decryptBlockCipher()">Decrypt</button>
+                    </div>
+                </div>
+
+                <!-- Result box -->
+                <div class="result-box" id="result">
+                    <!-- output will appear here -->
+                </div>
             </div>
         </div>
     </div>
@@ -116,7 +164,26 @@
         </div>
     </div>
 
+    <!-- Collaborator Modal -->
+    <div id="collaboratorModal" class="modal">
+        <div class="modal-content collaborator-modal-content">
+            <span class="close-modal" onclick="closeCollaboratorModal()">&times;</span>
+            <h2 id="collaboratorName"></h2>
+            <div class="collaborator-links">
+                <a id="linkedinLink" href="#" target="_blank" class="collaborator-contact-btn linkedin-btn">
+                    <span class="btn-icon">💼</span>
+                    <span>LinkedIn Profile</span>
+                </a>
+                <a id="emailLink" href="#" class="collaborator-contact-btn email-btn">
+                    <span class="btn-icon">📧</span>
+                    <span>Send Email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="modal.js"></script>
+    <script src="collaborator.js"></script>
 </body>
 
 </html>
