@@ -145,6 +145,80 @@ body {
     color: var(--text-dark);
 }
 
+/* === Collaborator Links === */
+.collaborator-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    padding-bottom: 2px;
+}
+
+.collaborator-link:hover {
+    border-bottom-color: var(--primary);
+    color: var(--primary-dark);
+}
+
+.collaborator-link:active {
+    color: var(--primary-darker);
+}
+
+/* Collaborator Modal Styling */
+.collaborator-modal-content {
+    text-align: center;
+    padding: 2.5rem;
+}
+
+#collaboratorName {
+    margin: 0 0 1.5rem 0;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.collaborator-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.collaborator-contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.collaborator-contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.25);
+}
+
+.linkedin-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.email-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
 /* === CIPHER CARD (RIGHT) === */
 .cipher-card {
     background: white;
