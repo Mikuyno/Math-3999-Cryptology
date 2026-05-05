@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cipher Interface | Linear Algebra & Cryptology</title>
     <link rel="stylesheet" href="style.css">
-    <script src="../Ciphers/affineCipher.js" defer></script>
-    <script src="../Ciphers/blockCipher.js" defer></script>
-    <script src="../Ciphers/ceasarCipher.js" defer></script>
-    <script src="../Ciphers/hillCipher.js" defer></script>
-    <script src="../Ciphers/vigenereCipher.js" defer></script>
-    <script src="choiceMenu.js" defer></script>
-    <script src="modal.js" defer></script>
+    <script src="../Ciphers/affineCipher.js"></script>
+    <script src="../Ciphers/blockCipher.js"></script>
+    <script src="../Ciphers/ceasarCipher.js"></script>
+    <script src="../Ciphers/hillCipher.js"></script>
+    <script src="../Ciphers/vigenereCipher.js"></script>
+    <script src="choiceMenu.js"></script>
 </head>
 
 <body>
@@ -32,26 +31,30 @@
             
             <h3 class="course-title">Course/Project Description</h3>
             <p class="course-description">
-                This independent study explores the mathematical foundations of cryptology, with a primary focus on Linear Algebra and Matrix Theory. 
-                The project transitions from simple modular arithmetic in Caesar and Vigenère ciphers to advanced linear transformations in polygraphic systems. 
-                A central component of the study is the implementation of the Hill Cipher, which utilizes matrix multiplication for encryption and 
-                matrix inversion over &#8484;<sub>26</sub>. for decryption.
+                This independent study will focus on cryptography. The student(s) will learn about field and work on coding 
+                examples. Special attention will be given to examples of linear algebra in cryptography.
             </p>
 
             <h3 class="learning-outcomes-title">Learning Outcomes and Course Objectives</h3>
             <p class="learning-intro">The goals of the independent study are as follows:</p>
             <ul class="learning-list">
-                <li>Application of Matrix Algebra: Perform and implement matrix operations (multiplication, inversion) within modular arithmetic (&#8484;<sub>n</sub>).</li>
-                <li>Linear Transformations: Analyze the security of ciphers by treating encryption as a linear mapping of vector spaces.</li>
-                <li>Modular Arithmetic & Number Theory: Master the Extended Euclidean Algorithm to find modular inverses, a necessity for Affine and Hill cipher decryption.</li>
-                <li>Computational Implementation: Develop software to solve systems of linear equations algorithmically to automate the cryptanalysis process.</li>
+                <li>Gaining knowledge of cryptography</li>
+                <li>Gaining knowledge of coding examples in cryptography</li>
+                <li>Gaining knowledge of the role linear algebra plays in cryptography</li>
+                <li>Gaining experience with public speaking</li>
             </ul>
 
             <h3 class="team-title">Project Team</h3>
             <div class="team-container">
                 <div class="team-member">
                     <span class="member-role">Collaborators:</span>
-                    <span class="member-names">Bryce Davis, Klement Hysaj, Leonardo Martinez, Darin Mullen, David Scott</span>
+                    <span class="member-names">
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Bryce Davis', 'https://linkedin.com/in/bryce-davis', 'bryce46davis@gmail.com'); return false;">Bryce Davis</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Klement Hysaj', 'https://www.linkedin.com/in/klemend-hysaj-65a90a340', '12345678darmul@gmail.com'); return false;">Klement Hysaj</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Leonardo Martinez', 'https://www.linkedin.com/in/leonardo-martinez-513352394', 'leonardocilion@gmail.com'); return false;">Leonardo Martinez</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('Darin Mullen', 'https://www.linkedin.com/in/darin-mullen-75878829a', '12345678darmul@gmail.com'); return false;">Darin Mullen</a>,
+                        <a href="#" class="collaborator-link" onclick="openCollaboratorModal('David Scott', 'https://www.linkedin.com/in/david-scott-426633305', 'Davidscott5405@gmail.com'); return false;">David Scott</a>
+                    </span>
                 </div>
                 <div class="team-member">
                     <span class="member-role">Professor:</span>
@@ -161,7 +164,26 @@
         </div>
     </div>
 
+    <!-- Collaborator Modal -->
+    <div id="collaboratorModal" class="modal">
+        <div class="modal-content collaborator-modal-content">
+            <span class="close-modal" onclick="closeCollaboratorModal()">&times;</span>
+            <h2 id="collaboratorName"></h2>
+            <div class="collaborator-links">
+                <a id="linkedinLink" href="#" target="_blank" class="collaborator-contact-btn linkedin-btn">
+                    <span class="btn-icon">💼</span>
+                    <span>LinkedIn Profile</span>
+                </a>
+                <a id="emailLink" href="#" class="collaborator-contact-btn email-btn">
+                    <span class="btn-icon">📧</span>
+                    <span>Send Email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="modal.js"></script>
+    <script src="collaborator.js"></script>
 </body>
 
 </html>
