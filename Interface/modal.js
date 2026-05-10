@@ -63,7 +63,7 @@ const cipherInfo = {
                 <strong>Plaintext:</strong> ATTACKATDAWN<br>
                 <strong>Keyword:</strong> KEY (repeats: KEYKEYKEYKEY)<br>
                 <strong>Key Values:</strong> K(10) E(4) Y(24) K(10) E(4) Y(24) K(10) E(4) Y(24) K(10) E(4) Y(24)<br>
-                <strong>Ciphertext:</strong> KEYKEYKEYKEY
+                <strong>Ciphertext:</strong> KXRKGIKXBKAL 
             </div>
 
             <h3>🔐 Security Improvements</h3>
