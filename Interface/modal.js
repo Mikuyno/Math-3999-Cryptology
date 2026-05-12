@@ -351,7 +351,7 @@ function closeModal() {
 }
 
 // Close modal when clicking outside the modal content
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     const modal = document.getElementById('learningModal');
     if (event.target === modal) {
         closeModal();
@@ -359,7 +359,7 @@ window.addEventListener('click', function(event) {
 });
 
 // Close modal on escape key
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closeModal();
     }
