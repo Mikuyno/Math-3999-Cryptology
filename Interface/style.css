@@ -145,6 +145,38 @@ body {
     color: var(--text-dark);
 }
 
+/* === Technologies Section === */
+.tech-container {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(196, 30, 58, 0.02) 100%);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(196, 30, 58, 0.1);
+    margin: 0.8rem 0;
+}
+
+.tech-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.tech-item:last-child {
+    margin-bottom: 0;
+}
+
+.tech-label {
+    font-weight: 700;
+    color: var(--primary);
+    min-width: 130px;
+}
+
+.tech-stack {
+    color: var(--text-dark);
+    font-family: 'Courier New', monospace;
+}
+
 /* === Collaborator Links === */
 .collaborator-link {
     color: var(--primary);
@@ -235,6 +267,44 @@ body {
     color: var(--primary);
     font-weight: 700;
     text-align: center;
+}
+
+/* === Technology Badges === */
+.tech-badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.tech-badge {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(196, 30, 58, 0.05) 100%);
+    border: 1.5px solid var(--primary);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.tech-badge:hover {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.15) 0%, rgba(196, 30, 58, 0.1) 100%);
+    box-shadow: 0 2px 6px rgba(196, 30, 58, 0.15);
+    transform: translateY(-1px);
+}
+
+.tech-badge-label {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.tech-badge-value {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
 }
 
 /* start section (text + dropdown) */
